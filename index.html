@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLITCH_TERMINAL // FULL_PORTAL</title>
-    <!-- Font Awesome for icons -->
+    <title>About Androgalaxi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         /* ==== CYBERPUNK THEME ==== */
         :root {
-            --black: #000;
+            --black: #000000;
             --blue: #00f0ff;
             --pink: #ff00ff;
             --green: #00ff88;
@@ -17,14 +17,71 @@
         }
         
         body {
-            background: var(--black);
+            background-color: var(--black);
             color: white;
             font-family: 'Courier New', monospace;
             line-height: 1.6;
-            overflow-x: hidden;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        /* ==== GLITCH ANIMATIONS ==== */
+        /* ==== TERMINAL CONTAINER ==== */
+        .terminal {
+            border: 1px solid var(--blue);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+            background: rgba(0, 10, 20, 0.7);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        /* ==== FORM STYLES ==== */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(0, 20, 40, 0.5);
+            border: 1px solid var(--blue);
+            color: white;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--pink);
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* ==== BUTTONS ==== */
+        button {
+            background: transparent;
+            color: var(--blue);
+            border: 1px solid var(--blue);
+            padding: 12px 24px;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        
+        button:hover {
+            background: var(--blue);
+            color: var(--black);
+            text-shadow: 0 0 10px white;
+        }
+        
+        /* ==== GLITCH EFFECTS ==== */
         @keyframes glitch {
             0% { text-shadow: 2px 0 var(--pink), -2px 0 var(--green); }
             25% { text-shadow: -2px 0 var(--pink), 2px 0 var(--green); }
@@ -32,39 +89,15 @@
             100% { text-shadow: 1px 0 var(--pink), -1px 0 var(--green); }
         }
         
-        @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-        
         .glitch-text {
-            animation: glitch 3s infinite, flicker 5s infinite;
+            animation: glitch 3s infinite;
         }
         
-        /* ==== TERMINAL LAYOUT ==== */
-        .terminal {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            border: 1px solid var(--blue);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
-        }
-        
-        .section {
-            margin-bottom: 3rem;
-            border-left: 3px solid var(--blue);
-            padding-left: 1rem;
-        }
-        
-        h1, h2 {
-            color: var(--blue);
-            text-transform: uppercase;
-        }
-        
-        h2 {
-            margin-bottom: 1rem;
-            border-bottom: 1px dashed var(--blue);
-            padding-bottom: 0.5rem;
+        /* ==== CAPTCHA STYLING ==== */
+        .g-recaptcha {
+            margin: 1.5rem 0;
+            transform: scale(0.9);
+            transform-origin: left;
         }
         
         /* ==== SOCIAL ICONS ==== */
@@ -72,6 +105,7 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            margin-top: 1rem;
         }
         
         .social-link {
@@ -91,20 +125,7 @@
             animation: glitch 0.5s infinite;
         }
         
-        .social-link i {
-            width: 20px;
-            text-align: center;
-        }
-        
-        /* ==== KICK SPECIFIC STYLE ==== */
-        .fa-kick {
-            background: linear-gradient(to right, #53fc18, #00e054);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        /* ==== [Previous styles for cards/forms/etc...] ==== */
+        /* ==== PROJECT CARDS ==== */
         .project {
             background: rgba(0, 30, 60, 0.3);
             border: 1px solid var(--blue);
@@ -113,11 +134,9 @@
             transition: transform 0.3s;
         }
         
-        .business-card {
-            background: rgba(0, 30, 60, 0.3);
-            border: 1px solid var(--blue);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+        .project:hover {
+            transform: translateX(5px);
+            box-shadow: 0 0 15px var(--blue);
         }
         
         /* ==== CURSOR ==== */
@@ -137,13 +156,13 @@
 <body>
     <div class="terminal">
         <!-- HEADER -->
-        <h1 class="glitch-text">> USERNAME_TERMINAL<span class="cursor"></span></h1>
+        <h1 class="glitch-text">> ANDROGALAXI_TERMINAL<span class="cursor"></span></h1>
         
         <!-- ABOUT SECTION -->
         <div class="section">
             <h2>> ABOUT_ME</h2>
-            <p>GLITCH_CONTENT_CREATOR | DEVELOPER | DIGITAL_ARTIST</p>
-            <p>> SPECIALTIES: [VIDEO_EDITING, CODE_ART, CYBERPUNK_AESTHETICS]</p>
+            <p>CONTENT_CREATOR | DEVELOPER | DIGITAL_ARTIST</p>
+            <p>> SPECIALTIES: [VIDEO_PRODUCTION, WEB_DEV, CYBERPUNK_AESTHETICS]</p>
         </div>
         
         <!-- CONTENT CREATION SECTION -->
@@ -152,8 +171,8 @@
             <p>> CURRENT_PROJECTS:</p>
             <ul>
                 <li>> GLITCH_ART_TUTORIALS</li>
-                <li>> CODE_AS_ART_STREAMS</li>
-                <li>> CYBERPUNK_VLOGS</li>
+                <li>> CODING_STREAMS</li>
+                <li>> TECH_REVIEWS</li>
             </ul>
         </div>
         
@@ -172,9 +191,9 @@
             </div>
         </div>
         
-        <!-- BUSINESS INQUIRIES -->
+        <!-- BUSINESS INQUIRIES FORM -->
         <div class="section">
-            <h2>> BUSINESS_INQUIRIES</h2>
+            <h2 class="glitch-text">> BUSINESS_INQUIRIES</h2>
             <div class="business-card">
                 <h3>> SERVICES_OFFERED:</h3>
                 <ul>
@@ -183,25 +202,54 @@
                     <li>> TECH_REVIEWS</li>
                 </ul>
             </div>
-            <form>
-                <input type="text" placeholder="COMPANY_NAME">
-                <input type="email" placeholder="CONTACT_EMAIL">
-                <textarea placeholder="PROPOSAL_DETAILS" rows="4"></textarea>
-                <button type="submit">SEND_REQUEST</button>
+            <form id="businessForm">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="YOUR_NAME" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="EMAIL_ADDRESS" required>
+                </div>
+                <div class="form-group">
+                    <select name="service" required>
+                        <option value="">SELECT_SERVICE</option>
+                        <option value="sponsorship">SPONSORSHIP</option>
+                        <option value="development">DEVELOPMENT</option>
+                        <option value="collaboration">CONTENT_COLLAB</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea name="details" placeholder="PROJECT_DETAILS (Budget/Timeline/Goals)" required></textarea>
+                </div>
+                <div class="g-recaptcha" data-sitekey="6Lc7WzApAAAAAKoGZ7X7JgQzQ4Q4Q4Q4Q4Q4Q4Q4"></div>
+                <button type="submit">SEND_PROPOSAL</button>
             </form>
         </div>
         
-        <!-- COLLABORATION -->
+        <!-- COLLABORATION FORM -->
         <div class="section">
-            <h2>> COLLABORATE_WITH_ME</h2>
+            <h2 class="glitch-text">> COLLABORATE_WITH_ME</h2>
             <p>> INTERESTED_IN:</p>
             <ul>
                 <li>> OPEN_SOURCE_PROJECTS</li>
                 <li>> ART_TECH_COLLABS</li>
+                <li>> COMMUNITY_EVENTS</li>
             </ul>
+            <form id="collabForm">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="YOUR_NAME" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="project" placeholder="PROJECT_NAME" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="details" placeholder="PROJECT_DESCRIPTION (Tools/Roles/Expectations)" required></textarea>
+                </div>
+                <div class="g-recaptcha" data-sitekey="6Lc7WzApAAAAAKoGZ7X7JgQzQ4Q4Q4Q4Q4Q4Q4Q4"></div>
+                <button type="submit">SUBMIT_REQUEST</button>
+            </form>
         </div>
         
-        <!-- SOCIALS WITH ICONS -->
+        <!-- SOCIALS -->
         <div class="section">
             <h2>> CONNECT_WITH_ME</h2>
             <div class="socials">
@@ -216,6 +264,68 @@
     </div>
 
     <script>
+        // Discord Webhook URL
+        const WEBHOOK_URL = "https://discord.com/api/webhooks/1365359064800039062/Vgrkfp0niAm4dSchir5Y_RaWeDFB9NX5DZjWQ0h8RdWI3SsIk0Y8VL5c52YBKDT5OxNS";
+        
+        // Form submission handler
+        async function sendToDiscord(formData, formType) {
+            if (!grecaptcha.getResponse()) {
+                alert("Please complete the CAPTCHA!");
+                return;
+            }
+            
+            const embed = {
+                title: `NEW ${formType.toUpperCase()} SUBMISSION`,
+                color: 0x00f0ff,
+                fields: [],
+                timestamp: new Date().toISOString()
+            };
+            
+            // Convert form data to embed fields
+            formData.forEach((value, key) => {
+                if (key !== 'g-recaptcha-response') {
+                    embed.fields.push({
+                        name: key.toUpperCase().replace('_', ' '),
+                        value: value || 'N/A',
+                        inline: key.length < 10
+                    });
+                }
+            });
+            
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        content: `<@435125886996709377>`, // Ping your user ID
+                        embeds: [embed]
+                    })
+                });
+                
+                if (response.ok) {
+                    alert("Submission successful! I'll contact you soon.");
+                    document.getElementById(`${formType}Form`).reset();
+                    grecaptcha.reset();
+                } else {
+                    throw new Error('Discord API error');
+                }
+            } catch (error) {
+                console.error("Submission error:", error);
+                alert("Transmission failed. Please try again or contact me directly.");
+            }
+        }
+        
+        // Form event listeners
+        document.getElementById("businessForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            sendToDiscord(new FormData(e.target), "business");
+        });
+        
+        document.getElementById("collabForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            sendToDiscord(new FormData(e.target), "collaboration");
+        });
+
         // Terminal typing effect
         const phrases = [
             "INITIALIZING_SYSTEMS...",
@@ -246,19 +356,6 @@
                 setTimeout(typeWriter, 500);
             }
         }
-        
-        // Random glitch effect on sections
-        setInterval(() => {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                if (Math.random() > 0.7) {
-                    section.style.animation = 'none';
-                    setTimeout(() => {
-                        section.style.animation = 'glitch 0.5s, flicker 1s';
-                    }, 10);
-                }
-            });
-        }, 3000);
         
         window.onload = typeWriter;
     </script>
