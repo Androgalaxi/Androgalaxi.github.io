@@ -204,10 +204,13 @@
             </div>
             <form id="businessForm">
                 <div class="form-group">
-                    <input type="text" name="name" placeholder="YOUR_NAME" required>
+                    <input type="text" name="contact_name" placeholder="YOUR_NAME" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" placeholder="EMAIL_ADDRESS" required>
+                    <input type="email" name="contact_email" placeholder="EMAIL (FOR_RESPONSE)" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="company" placeholder="COMPANY (OPTIONAL)">
                 </div>
                 <div class="form-group">
                     <select name="service" required>
@@ -236,13 +239,16 @@
             </ul>
             <form id="collabForm">
                 <div class="form-group">
-                    <input type="text" name="name" placeholder="YOUR_NAME" required>
+                    <input type="text" name="collaborator_name" placeholder="YOUR_NAME" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="project" placeholder="PROJECT_NAME" required>
+                    <input type="email" name="contact_email" placeholder="EMAIL (FOR_RESPONSE)" required>
                 </div>
                 <div class="form-group">
-                    <textarea name="details" placeholder="PROJECT_DESCRIPTION (Tools/Roles/Expectations)" required></textarea>
+                    <input type="text" name="project_name" placeholder="PROJECT_NAME" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="project_details" placeholder="PROJECT_DESCRIPTION (Roles/Tools/Expectations)" required></textarea>
                 </div>
                 <div class="g-recaptcha" data-sitekey="6Lc7WzApAAAAAKoGZ7X7JgQzQ4Q4Q4Q4Q4Q4Q4Q4"></div>
                 <button type="submit">SUBMIT_REQUEST</button>
@@ -275,7 +281,7 @@
             }
             
             const embed = {
-                title: `NEW ${formType.toUpperCase()} SUBMISSION`,
+                title: `NEW_${formType.toUpperCase()}_SUBMISSION`,
                 color: 0x00f0ff,
                 fields: [],
                 timestamp: new Date().toISOString()
