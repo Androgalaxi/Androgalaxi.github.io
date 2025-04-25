@@ -35,7 +35,26 @@
             margin: 2rem 0;
         }
         
-        /* ==== FORM STYLES ==== */
+        /* ==== GLITCH EFFECTS ==== */
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--pink), -2px 0 var(--green); }
+            25% { text-shadow: -2px 0 var(--pink), 2px 0 var(--green); }
+            50% { text-shadow: 3px 0 var(--pink), -3px 0 var(--green); }
+            100% { text-shadow: 1px 0 var(--pink), -1px 0 var(--green); }
+        }
+        
+        .glitch-text {
+            animation: glitch 3s infinite;
+        }
+        
+        /* ==== UNIFIED FORM STYLES ==== */
+        .unified-form {
+            background: rgba(0, 30, 60, 0.3);
+            border: 1px solid var(--blue);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -62,6 +81,19 @@
             resize: vertical;
         }
         
+        .form-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .form-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
         /* ==== BUTTONS ==== */
         button {
             background: transparent;
@@ -79,18 +111,6 @@
             background: var(--blue);
             color: var(--black);
             text-shadow: 0 0 10px white;
-        }
-        
-        /* ==== GLITCH EFFECTS ==== */
-        @keyframes glitch {
-            0% { text-shadow: 2px 0 var(--pink), -2px 0 var(--green); }
-            25% { text-shadow: -2px 0 var(--pink), 2px 0 var(--green); }
-            50% { text-shadow: 3px 0 var(--pink), -3px 0 var(--green); }
-            100% { text-shadow: 1px 0 var(--pink), -1px 0 var(--green); }
-        }
-        
-        .glitch-text {
-            animation: glitch 3s infinite;
         }
         
         /* ==== CAPTCHA STYLING ==== */
@@ -162,7 +182,7 @@
         <div class="section">
             <h2>> ABOUT_ME</h2>
             <p>Content Creator | Developer | Voice Actor</p>
-            <p>> SPECIALTIES: [Video PRoduction, Gaming, Editing]</p>
+            <p>> SPECIALTIES: [Video Production, Gaming, Editing]</p>
         </div>
         
         <!-- CONTENT CREATION SECTION -->
@@ -182,153 +202,147 @@
             <div class="project">
                 <h3>> AetherX</h3>
                 <p>> DESCRIPTION: AetherX is a Discord bot that is trying to serve an "All in One" purpose. Still a work in progress.</p>
-                <a href="#" class="https://github.com/AetherX-Discord-bot/Discord-Bot"><i class="fab fa-github"></i> VIEW_ON_GITHUB</a>
+                <a href="https://github.com/AetherX-Discord-bot/Discord-Bot" class="social-link"><i class="fab fa-github"></i> VIEW_ON_GITHUB</a>
             </div>
             <div class="project">
                 <h3>> Verify Bot</h3>
                 <p>> DESCRIPTION: A simple self hostable bot to force users to type a keyword in a set channel to gain access to your server.</p>
-                <a href="#" class="https://github.com/Androgalaxi/Verify-Bot"><i class="fab fa-github"></i> VIEW_ON_GITHUB</a>
+                <a href="https://github.com/Androgalaxi/Verify-Bot" class="social-link"><i class="fab fa-github"></i> VIEW_ON_GITHUB</a>
             </div>
         </div>
         
-        <!-- BUSINESS INQUIRIES FORM -->
+        <!-- UNIFIED CONTACT FORM -->
         <div class="section">
-            <h2 class="glitch-text">> BUSINESS_INQUIRIES</h2>
-            <div class="business-card">
-                <h3>> SERVICES_OFFERED:</h3>
-                <ul>
-                    <li>> Sponsored Content</li>
-                    <li>> Tech Reviews</li>
-                    <li>> Other</li>
-                </ul>
+            <h2 class="glitch-text">> CONTACT_PORTAL</h2>
+            <div class="unified-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="YOUR_NAME" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="EMAIL (FOR_RESPONSE)" required>
+                    </div>
+                    
+                    <h3>> PURPOSE:</h3>
+                    <div class="form-options">
+                        <label class="form-option">
+                            <input type="radio" name="purpose" value="business" checked> 
+                            BUSINESS_INQUIRY
+                        </label>
+                        <label class="form-option">
+                            <input type="radio" name="purpose" value="collab"> 
+                            COLLABORATION
+                        </label>
+                        <label class="form-option">
+                            <input type="radio" name="purpose" value="other"> 
+                            OTHER
+                        </label>
+                    </div>
+                    
+                    <!-- Dynamic fields -->
+                    <div id="businessFields">
+                        <div class="form-group">
+                            <input type="text" name="company" placeholder="COMPANY (OPTIONAL)">
+                        </div>
+                        <div class="form-group">
+                            <select name="service">
+                                <option value="">SELECT_SERVICE_TYPE</option>
+                                <option value="sponsorship">SPONSORSHIP</option>
+                                <option value="tech-review">TECH_REVIEW</option>
+                                <option value="other">OTHER</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="collabFields" style="display:none">
+                        <div class="form-group">
+                            <input type="text" name="project_name" placeholder="PROJECT_NAME">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea name="details" placeholder="DETAILS (Budget/Timeline/Goals for Business, Project Details for Collabs)" required></textarea>
+                    </div>
+                    
+                    <div class="g-recaptcha" data-sitekey="6LcjyiQrAAAAADwKzb70JfTOuUkQNWxd7T4zRDLR"></div>
+                    <button type="submit">TRANSMIT_MESSAGE</button>
+                </form>
             </div>
-            <form id="businessForm">
-                <div class="form-group">
-                    <input type="text" name="contact_name" placeholder="YOUR_NAME" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="contact_email" placeholder="EMAIL (FOR_RESPONSE)" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="company" placeholder="COMPANY (OPTIONAL)">
-                </div>
-                <div class="form-group">
-                    <select name="service" required>
-                        <option value="">SELECT_SERVICE</option>
-                        <option value="sponsorship">Sponsorship</option>
-                        <option value="tech review">Tech Review</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <textarea name="details" placeholder="PROJECT_DETAILS (Budget/Timeline/Goals)" required></textarea>
-                </div>
-                <div class="g-recaptcha" data-sitekey="6LcjyiQrAAAAADwKzb70JfTOuUkQNWxd7T4zRDLR"></div>
-                <button type="submit">SEND_PROPOSAL</button>
-            </form>
-        </div>
-        
-        <!-- COLLABORATION FORM -->
-        <div class="section">
-            <h2 class="glitch-text">> COLLABORATE_WITH_ME</h2>
-            <p>> INTERESTED_IN:</p>
-            <ul>
-                <li>> Video Collabs</li>
-                <li>> Stream Collabs</li>
-            </ul>
-            <form id="collabForm">
-                <div class="form-group">
-                    <input type="text" name="collaborator_name" placeholder="YOUR_NAME" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="contact_email" placeholder="EMAIL (FOR_RESPONSE)" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="project_name" placeholder="PROJECT_NAME" required>
-                </div>
-                <div class="form-group">
-                    <textarea name="project_details" placeholder="PROJECT_DESCRIPTION (Roles/Tools/Expectations)" required></textarea>
-                </div>
-                <div class="g-recaptcha" data-sitekey="6LcjyiQrAAAAADwKzb70JfTOuUkQNWxd7T4zRDLR"></div>
-                <button type="submit">SUBMIT_REQUEST</button>
-            </form>
         </div>
         
         <!-- SOCIALS -->
         <div class="section">
             <h2>> CONNECT_WITH_ME</h2>
             <div class="socials">
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i> TWITTER</a>
-                <a href="#" class="social-link"><i class="fab fa-youtube"></i> YOUTUBE</a>
-                <a href="#" class="social-link"><i class="fab fa-github"></i> GITHUB</a>
-                <a href="#" class="social-link"><i class="fab fa-instagram"></i> INSTAGRAM</a>
-                <a href="#" class="social-link"><i class="fab fa-discord"></i> DISCORD</a>
-                <a href="#" class="social-link"><i class="fab fa-kick"></i> KICK</a>
+                <a href="https://twitter.com/YourTwitter" class="social-link"><i class="fab fa-twitter"></i> TWITTER</a>
+                <a href="https://youtube.com/YourChannel" class="social-link"><i class="fab fa-youtube"></i> YOUTUBE</a>
+                <a href="https://github.com/Androgalaxi" class="social-link"><i class="fab fa-github"></i> GITHUB</a>
+                <a href="https://instagram.com/YourInstagram" class="social-link"><i class="fab fa-instagram"></i> INSTAGRAM</a>
+                <a href="https://discord.gg/YourInvite" class="social-link"><i class="fab fa-discord"></i> DISCORD</a>
+                <a href="https://kick.com/YourKick" class="social-link"><i class="fab fa-kick"></i> KICK</a>
             </div>
         </div>
     </div>
 
     <script>
-        // Discord Webhook URL
-        const WEBHOOK_URL = "https://discord.com/api/webhooks/1365359064800039062/Vgrkfp0niAm4dSchir5Y_RaWeDFB9NX5DZjWQ0h8RdWI3SsIk0Y8VL5c52YBKDT5OxNS";
-        
-        // Form submission handler
-        async function sendToDiscord(formData, formType) {
+        // Dynamic form fields
+        document.querySelectorAll('input[name="purpose"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                document.getElementById('businessFields').style.display = 
+                    e.target.value === 'business' ? 'block' : 'none';
+                document.getElementById('collabFields').style.display = 
+                    e.target.value === 'collab' ? 'block' : 'none';
+            });
+        });
+
+        // Form submission
+        document.getElementById("contactForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            
             if (!grecaptcha.getResponse()) {
-                alert("Please complete the CAPTCHA!");
+                alert("Complete CAPTCHA to proceed!");
                 return;
             }
-            
-            const embed = {
-                title: `NEW_${formType.toUpperCase()}_SUBMISSION`,
-                color: 0x00f0ff,
-                fields: [],
-                timestamp: new Date().toISOString()
-            };
-            
-            // Convert form data to embed fields
-            formData.forEach((value, key) => {
-                if (key !== 'g-recaptcha-response') {
-                    embed.fields.push({
-                        name: key.toUpperCase().replace('_', ' '),
-                        value: value || 'N/A',
-                        inline: key.length < 10
-                    });
-                }
-            });
+
+            const formData = new FormData(e.target);
+            const purpose = formData.get('purpose');
             
             try {
-                const response = await fetch(WEBHOOK_URL, {
+                const response = await fetch("https://discord.com/api/webhooks/1365359064800039062/Vgrkfp0niAm4dSchir5Y_RaWeDFB9NX5DZjWQ0h8RdWI3SsIk0Y8VL5c52YBKDT5OxNS", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        content: `<@435125886996709377>`, // Ping your user ID
-                        embeds: [embed]
+                        content: `<@435125886996709377>`,
+                        embeds: [{
+                            title: `NEW_${purpose.toUpperCase()}_REQUEST`,
+                            color: 0x00f0ff,
+                            fields: Array.from(formData.entries())
+                                .filter(([key]) => key !== 'g-recaptcha-response')
+                                .map(([key, value]) => ({
+                                    name: key.toUpperCase().replace(/_/g, ' '),
+                                    value: value || 'Not specified',
+                                    inline: true
+                                })),
+                            timestamp: new Date().toISOString()
+                        }]
                     })
                 });
                 
                 if (response.ok) {
-                    alert("Submission successful! I'll contact you soon.");
-                    document.getElementById(`${formType}Form`).reset();
+                    alert("Message successfully transmitted!");
+                    e.target.reset();
                     grecaptcha.reset();
+                    // Reset to business view
+                    document.querySelector('input[value="business"]').checked = true;
+                    document.getElementById('businessFields').style.display = 'block';
+                    document.getElementById('collabFields').style.display = 'none';
                 } else {
                     throw new Error('Discord API error');
                 }
             } catch (error) {
-                console.error("Submission error:", error);
-                alert("Transmission failed. Please try again or contact me directly.");
+                alert("Transmission error - please contact me directly");
+                console.error(error);
             }
-        }
-        
-        // Form event listeners
-        document.getElementById("businessForm").addEventListener("submit", (e) => {
-            e.preventDefault();
-            sendToDiscord(new FormData(e.target), "business");
-        });
-        
-        document.getElementById("collabForm").addEventListener("submit", (e) => {
-            e.preventDefault();
-            sendToDiscord(new FormData(e.target), "collaboration");
         });
 
         // Terminal typing effect
