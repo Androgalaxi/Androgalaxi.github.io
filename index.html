@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Androgalaxi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         /* ==== CYBERPUNK THEME ==== */
         :root {
@@ -46,79 +45,6 @@
         
         .glitch-text {
             animation: glitch 3s infinite;
-        }
-        
-        /* ==== UNIFIED FORM STYLES ==== */
-        .unified-form {
-            background: rgba(0, 30, 60, 0.3);
-            border: 1px solid var(--blue);
-            padding: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        input, textarea, select {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            background: rgba(0, 20, 40, 0.5);
-            border: 1px solid var(--blue);
-            color: white;
-            font-family: 'Courier New', monospace;
-            transition: all 0.3s;
-        }
-        
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--pink);
-            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
-        }
-        
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .form-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        
-        .form-option {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        /* ==== BUTTONS ==== */
-        button {
-            background: transparent;
-            color: var(--blue);
-            border: 1px solid var(--blue);
-            padding: 12px 24px;
-            font-family: 'Courier New', monospace;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 1rem;
-        }
-        
-        button:hover {
-            background: var(--blue);
-            color: var(--black);
-            text-shadow: 0 0 10px white;
-        }
-        
-        /* ==== CAPTCHA STYLING ==== */
-        .g-recaptcha {
-            margin: 1.5rem 0;
-            transform: scale(0.9);
-            transform-origin: left;
         }
         
         /* ==== SOCIAL ICONS ==== */
@@ -180,6 +106,14 @@
             border: 1px solid var(--blue);
             background: rgba(0, 20, 40, 0.3);
             white-space: pre-line;
+        }
+
+        /* ==== SAFE CONTACT SECTION ==== */
+        .safe-contact {
+            background: rgba(0, 30, 60, 0.3);
+            border: 1px solid var(--blue);
+            padding: 2rem;
+            margin-top: 2rem;
         }
     </style>
 </head>
@@ -250,62 +184,17 @@ Anyways, I hope you have a great day or night and I hope to see you somewhere!
             </div>
         </div>
         
-        <!-- UNIFIED CONTACT FORM -->
+        <!-- SAFER CONTACT SECTION (REPLACEMENT) -->
         <div class="section">
-            <h2 class="glitch-text" id="ContactPortal">> CONTACT_PORTAL</h2>
-            <div class="unified-form">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="YOUR_NAME" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="EMAIL (FOR_RESPONSE)" required>
-                    </div>
-                    
-                    <h3>> PURPOSE:</h3>
-                    <div class="form-options">
-                        <label class="form-option">
-                            <input type="radio" name="purpose" value="business" checked> 
-                            BUSINESS_INQUIRY
-                        </label>
-                        <label class="form-option">
-                            <input type="radio" name="purpose" value="collab"> 
-                            COLLABORATION
-                        </label>
-                        <label class="form-option">
-                            <input type="radio" name="purpose" value="other"> 
-                            OTHER
-                        </label>
-                    </div>
-                    
-                    <!-- Dynamic fields -->
-                    <div id="businessFields">
-                        <div class="form-group">
-                            <input type="text" name="company" placeholder="COMPANY (OPTIONAL)">
-                        </div>
-                        <div class="form-group">
-                            <select name="service">
-                                <option value="">SELECT_SERVICE_TYPE</option>
-                                <option value="sponsorship">SPONSORSHIP</option>
-                                <option value="tech-review">TECH_REVIEW</option>
-                                <option value="other">OTHER</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div id="collabFields" style="display:none">
-                        <div class="form-group">
-                            <input type="text" name="project_name" placeholder="PROJECT_NAME">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea name="details" placeholder="DETAILS (Budget/Timeline/Goals for Business, Project Details for Collabs)" required></textarea>
-                    </div>
-                    
-                    <div class="g-recaptcha" data-sitekey="6LcjyiQrAAAAADwKzb70JfTOuUkQNWxd7T4zRDLR"></div>
-                    <button type="submit">Nice Try</button>
-                </form>
+            <h2 class="glitch-text">> CONTACT_PORTAL</h2>
+            <div class="safe-contact">
+                <p>> FOR_SAFETY_REASONS, PLEASE_REACH_OUT_VIA:</p>
+                <ul>
+                    <li>> DISCORD (Join my server or DM)</li>
+                    <li>> X (DMs open for legit inquiries)</li>
+                    <li>> EMAIL (Only for serious business)</li>
+                </ul>
+                <p>> AVOIDING_SPAM/ABUSE = BETTER_EXPERIENCE_FOR_ALL.</p>
             </div>
         </div>
         
@@ -324,66 +213,6 @@ Anyways, I hope you have a great day or night and I hope to see you somewhere!
     </div>
 
     <script>
-        // Dynamic form fields
-        document.querySelectorAll('input[name="purpose"]').forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                document.getElementById('businessFields').style.display = 
-                    e.target.value === 'business' ? 'block' : 'none';
-                document.getElementById('collabFields').style.display = 
-                    e.target.value === 'collab' ? 'block' : 'none';
-            });
-        });
-
-        // Form submission
-        document.getElementById("contactForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            
-            if (!grecaptcha.getResponse()) {
-                alert("Complete CAPTCHA to proceed!");
-                return;
-            }
-
-            const formData = new FormData(e.target);
-            const purpose = formData.get('purpose');
-            
-            try {
-                const response = await fetch("empty", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        content: `<@435125886996709377>`,
-                        embeds: [{
-                            title: `NEW_${purpose.toUpperCase()}_REQUEST`,
-                            color: 0x00f0ff,
-                            fields: Array.from(formData.entries())
-                                .filter(([key]) => key !== 'g-recaptcha-response')
-                                .map(([key, value]) => ({
-                                    name: key.toUpperCase().replace(/_/g, ' '),
-                                    value: value || 'Not specified',
-                                    inline: true
-                                })),
-                            timestamp: new Date().toISOString()
-                        }]
-                    })
-                });
-                
-                if (response.ok) {
-                    alert("Message successfully transmitted!");
-                    e.target.reset();
-                    grecaptcha.reset();
-                    // Reset to business view
-                    document.querySelector('input[value="business"]').checked = true;
-                    document.getElementById('businessFields').style.display = 'block';
-                    document.getElementById('collabFields').style.display = 'none';
-                } else {
-                    throw new Error('Discord API error');
-                }
-            } catch (error) {
-                alert("Transmission error - please contact me directly");
-                console.error(error);
-            }
-        });
-
         // Terminal typing effect
         const phrases = [
             "INITIALIZING_SYSTEMS...",
