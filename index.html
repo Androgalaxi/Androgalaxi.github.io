@@ -14,6 +14,7 @@
             --pink: #ff00ff;
             --green: #00ff88;
             --matrix: #0f0;
+            --dark-blue: #001a33;
         }
         
         body {
@@ -24,6 +25,62 @@
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(to right, var(--dark-blue) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--dark-blue) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        /* ==== SIDE DECORATIONS ==== */
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .cyber-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--blue), transparent);
+            height: 1px;
+            width: 100%;
+            opacity: 0.1;
+        }
+        
+        .cyber-circle {
+            position: absolute;
+            border: 1px solid var(--blue);
+            border-radius: 50%;
+            opacity: 0.05;
+        }
+        
+        .binary-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.15;
+        }
+        
+        .binary-digit {
+            position: absolute;
+            color: var(--matrix);
+            font-size: 14px;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
         }
         
         /* ==== TERMINAL CONTAINER ==== */
@@ -33,6 +90,8 @@
             background: rgba(0, 10, 20, 0.7);
             padding: 2rem;
             margin: 2rem 0;
+            position: relative;
+            z-index: 1;
         }
         
         /* ==== GLITCH EFFECTS ==== */
@@ -115,9 +174,93 @@
             padding: 2rem;
             margin-top: 2rem;
         }
+        
+        /* ==== SCANLINE EFFECT ==== */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 95%,
+                rgba(0, 240, 255, 0.05) 96%
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 100;
+            animation: scanline 8s linear infinite;
+        }
+        
+        @keyframes scanline {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+        
+        /* ==== CORNER DECORATIONS ==== */
+        .corner {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border-color: var(--blue);
+            border-style: solid;
+            border-width: 0;
+            opacity: 0.3;
+        }
+        
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-top-width: 2px;
+            border-left-width: 2px;
+        }
+        
+        .corner-tr {
+            top: 20px;
+            right: 20px;
+            border-top-width: 2px;
+            border-right-width: 2px;
+        }
+        
+        .corner-bl {
+            bottom: 20px;
+            left: 20px;
+            border-bottom-width: 2px;
+            border-left-width: 2px;
+        }
+        
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-bottom-width: 2px;
+            border-right-width: 2px;
+        }
+        
+        /* ==== PULSING GLOW ==== */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 5px var(--blue); }
+            50% { box-shadow: 0 0 20px var(--blue); }
+            100% { box-shadow: 0 0 5px var(--blue); }
+        }
+        
+        .terminal {
+            animation: pulse 6s infinite;
+        }
     </style>
 </head>
 <body>
+    <!-- BACKGROUND ELEMENTS -->
+    <div class="cyber-grid"></div>
+    <div class="binary-rain" id="binaryRain"></div>
+    <div class="scanlines"></div>
+    
+    <!-- CORNER DECORATIONS -->
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+    
     <div class="terminal">
         <!-- HEADER -->
         <h1 class="glitch-text">> Androgalaxi's Terminal<span class="cursor"></span></h1>
@@ -244,7 +387,53 @@ Anyways, I hope you have a great day or night and I hope to see you somewhere!
             }
         }
         
-        window.onload = typeWriter;
+        // Create binary rain effect
+        function createBinaryRain() {
+            const container = document.getElementById('binaryRain');
+            const digits = '01';
+            const columns = Math.floor(window.innerWidth / 20);
+            
+            for (let i = 0; i < columns; i++) {
+                const digit = document.createElement('div');
+                digit.className = 'binary-digit';
+                digit.textContent = digits[Math.floor(Math.random() * digits.length)];
+                digit.style.left = `${i * 20}px`;
+                digit.style.top = `${Math.random() * -100}px`;
+                digit.style.animationDuration = `${5 + Math.random() * 10}s`;
+                digit.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(digit);
+            }
+        }
+        
+        // Create cyber grid lines
+        function createCyberGrid() {
+            const container = document.querySelector('.cyber-grid');
+            const lineCount = 20;
+            
+            for (let i = 0; i < lineCount; i++) {
+                const line = document.createElement('div');
+                line.className = 'cyber-line';
+                line.style.top = `${(i / lineCount) * 100}%`;
+                container.appendChild(line);
+            }
+            
+            // Add some circles
+            for (let i = 0; i < 8; i++) {
+                const circle = document.createElement('div');
+                circle.className = 'cyber-circle';
+                circle.style.width = `${50 + Math.random() * 200}px`;
+                circle.style.height = circle.style.width;
+                circle.style.left = `${Math.random() * 100}%`;
+                circle.style.top = `${Math.random() * 100}%`;
+                container.appendChild(circle);
+            }
+        }
+        
+        window.onload = function() {
+            typeWriter();
+            createBinaryRain();
+            createCyberGrid();
+        };
     </script>
 </body>
 </html>
